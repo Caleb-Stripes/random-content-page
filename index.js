@@ -22,8 +22,18 @@ function myFunction(items) {
 
 //console.log(myFunction(srcArray)); 3
 function srcSwap(){
-    document.getElementById('zero').src = myFunction(srcArray);
+    //variable to store the new src
+    var newId = myFunction(srcArray);
+    //variable to store the current id
+    var currentId = document.getElementById('zero').src;
+    //check to make sure the new id is not the same as the current before updating the src
+    if(newId == currentId) {
+        return srcSwap()
+    } else {
+        document.getElementById('zero').src = newId;
+    }
+
 }
 
 //runs the shuffle constantly, works just comment out for development
-//setInterval(srcSwap, 3000);
+setInterval(srcSwap, 3000);
