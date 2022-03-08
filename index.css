@@ -1,5 +1,6 @@
 html {
     overflow: auto;
+    background-color: black;
 }
 
 html, body, div, iframe {

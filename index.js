@@ -7,7 +7,7 @@
 
 // var items = [254, 45, 212, 365, 2543];
 // console.log(random_item(items));
-var iFrameSource = document.getElementById('zero').src;
+//var iFrameSource = document.getElementById('zero').src; <-this does not set the src when in the function, rather it only stores it as a value
 const srcArray = [];
 srcArray[0] = 'https://docs.google.com/presentation/d/1C9R1uJ3UxTYtFIvq5gJJqNN4mo3kpLpk-dIRYZLBVXc/preview?rm=minimal&slide=id.g1163cbbd3f2_0_0',
 srcArray[1] = 'https://docs.google.com/presentation/d/1C9R1uJ3UxTYtFIvq5gJJqNN4mo3kpLpk-dIRYZLBVXc/preview?rm=minimal&slide=id.g1163cbbd3f2_0_254',
@@ -18,6 +18,11 @@ function myFunction(items) {
     //console.log("hello"); 1
     //console.log(iFrameSource); 2
     return items[Math.floor(Math.random()*items.length)];
+}
+
+//establish the first src
+function srcSet(){
+    document.getElementById('zero').src = myFunction(srcArray);
 }
 
 //console.log(myFunction(srcArray)); 3
@@ -35,5 +40,6 @@ function srcSwap(){
 
 }
 
+srcSet();
 //runs the shuffle constantly, works just comment out for development
 setInterval(srcSwap, 3000);
