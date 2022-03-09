@@ -6,9 +6,6 @@ srcArray[2] = 'https://docs.google.com/presentation/d/1C9R1uJ3UxTYtFIvq5gJJqNN4m
 srcArray[3] = 'https://www.w3schools.com/js/js_if_else.asp',
 srcArray[4] = 'https://www.w3schools.com/jsref/met_loc_reload.asp'
 
-//an array to work with as the functions run
-let array2 = srcArray;
-
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
   
@@ -29,16 +26,16 @@ function shuffle(array) {
 
   function srcSwap(){
       //check if the array is empty and refresh it
-      if (array2.length <= 1) {
+      if (srcArray.length <= 1) {
           location.reload();
       }
 
       //shuffle sources
-      shuffle(array2);
+      shuffle(srcArray);
 
       //take the last one for the iFrame src
-      document.getElementById('zero').src = array2.pop();
+      document.getElementById('zero').src = srcArray.pop();
   }
 
   srcSwap();
-  setInterval(srcSwap, 3000);
+  setInterval(srcSwap, 8000);
