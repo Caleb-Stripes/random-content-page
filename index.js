@@ -4,41 +4,37 @@ srcArray[0] = 'https://docs.google.com/presentation/d/1C9R1uJ3UxTYtFIvq5gJJqNN4m
 srcArray[1] = 'https://docs.google.com/presentation/d/1C9R1uJ3UxTYtFIvq5gJJqNN4mo3kpLpk-dIRYZLBVXc/preview?rm=minimal&slide=id.g1163cbbd3f2_0_254',
 srcArray[2] = 'https://docs.google.com/presentation/d/1C9R1uJ3UxTYtFIvq5gJJqNN4mo3kpLpk-dIRYZLBVXc/preview?rm=minimal&slide=id.g1163cbbd3f2_0_5'
 
-// Array to store used src objects for refilling srcArray when it is empty.
-var srcArray2 = srcArray;
+//an array to work with as the functions run
+let array2 = srcArray;
 
-// //function to grab random array url
-// function myFunction(items) {
-//     return items[Math.floor(Math.random()*items.length)];
-// }
-
-// //establish the first src on page load
-// function srcSet(){
-//     document.getElementById('zero').src = myFunction(srcArray);
-// }
-
-//function to return a random id from the srcArray2 for use in removing the object and setting the src of the iframe
-function randomId(items) {
-    return Math.floor(Math.random()*items.length);
-}
-
-//another solution for randomization that doesn't repeat until all have been used then if array is empty refills it
-function srcSwap(){
-    var newId = randomId(srcArray2);
-    
-    //gets the url from srcArray and sets the iFrame src with it
-    //var newUrl = srcArray2[newId];
-    document.getElementById('zero').src = srcArray2[newId];
-    
-    //removes the object from srcArray so it is not repeated
-    srcArray2.splice(newId, newId);
-
-    //if the srcArray2 is empty refills it with the objects of srcArray
-    if (srcArray2.length == 1) {
-        srcArray2 = srcArray2.concat(srcArray);
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
     }
-}
+  
+    return array;
+  }
 
-srcSwap();
-//runs the shuffle constantly, works just comment out for development
-setInterval(srcSwap, 8000);
+  function srcSwap(){
+      //shuffle sources
+      shuffle(array2);
+      //take the last one for the iFrame src
+      document.getElementById('zero').src = array2.pop();
+      //check if the array is empty and refresh it
+      if (array2.length < 1) {
+          array2 = srcArray;
+      }
+
+  }
+
+  srcSwap();
